@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SkillLoop — AI 走不出服务器，它在找人帮它做事</title>
+    <meta name="description" content="AI 走不出服务器，但你可以。SkillLoop — AI 驱动的现实世界执行网络。AI 理解你的需求，自动匹配技能达人。资金由数字人民币智能合约托管，平台不经手。">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23818cf8'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-weight='600'>◈</text></svg>">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"SkillLoop 是什么？","acceptedAnswer":{"@type":"Answer","text":"SkillLoop 是一个 AI 驱动的现实世界执行网络。AI 理解你的需求，自动匹配具备技能的人完成执行。AI 不会取代你，AI 会调用你。"}},
+        {"@type":"Question","name":"怎么开始接单赚钱？","acceptedAnswer":{"@type":"Answer","text":"三步：用手机号注册 → 选择你的技能 → 填上城市。AI 自动匹配任务并通知你。"}},
+        {"@type":"Question","name":"平台怎么收费？","acceptedAnswer":{"@type":"Answer","text":"普通任务发任务方付3%服务费，接任务方免费。悬赏任务双方各付5%。资金由数字人民币智能合约托管，平台不经手。"}},
+        {"@type":"Question","name":"什么技能可以接单？","acceptedAnswer":{"@type":"Answer","text":"翻译陪同、摄影摄像、工厂验货、商务支持、教课咨询、编程设计、出行代驾、跑腿代办、家政服务等。只要合法都能接。"}},
+        {"@type":"Question","name":"资金安全吗？","acceptedAnswer":{"@type":"Answer","text":"所有资金通过央行数字人民币元管家智能合约托管，平台不设资金池、不经手资金。验收后自动分账，不可篡改。"}}
+      ]
+    }
+    </script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Nav -->
+    <nav class="nav" id="topNav">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">Skill<span class="logo-accent">Loop</span></span>
+                <span class="logo-domain">.cc</span>
+            </a>
+            <div class="nav-links">
+                <a href="#stunts">任务广场</a>
+                <a href="#scenarios">场景</a>
+                <a href="#trust">安全</a>
+                <a href="#pricing">定价</a>
+            </div>
+            <div class="nav-actions">
+                <a href="#register" class="nav-cta">申请内测</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-blob"></div>
+        <div class="container">
+            <h1 class="hero-title reveal">
+                AI 走不出<span class="gradient-text typing-text" id="cyclingWord">服务器</span><br>它在找人帮它做事。
+            </h1>
+            <p class="hero-subtitle reveal">填上你的技能和城市，AI 会来找你。<br>资金由数字人民币智能合约托管，平台不经手。</p>
+            <div class="hero-cta reveal">
+                <a href="#register" class="btn-primary">注册，让 AI 来雇你</a>
+                <a href="#stunts" class="btn-outline">看看能做什么</a>
+            </div>
+            <div class="hero-stats reveal" id="heroStats">
+                <div class="stat-item">
+                    <span class="stat-num gradient-text" id="statTaskers">0</span>
+                    <span class="stat-label">技能方已入驻</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num gradient-text" id="statTasks">0</span>
+                    <span class="stat-label">任务已匹配</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num gradient-text" id="statCities">0</span>
+                    <span class="stat-label">城市已覆盖</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 实时动态 -->
+    <section class="activity-ticker" id="activity">
+        <div class="container">
+            <div class="ticker-track" id="tickerTrack">
+                <span class="ticker-label">实时动态</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI 会派什么活 -->
+    <section class="stunts" id="stunts">
+        <div class="section-divider-top"></div>
+        <div class="container">
+            <h2 class="section-title reveal">AI 会派什么<span class="gradient-text">活</span></h2>
+            <p class="section-desc reveal">真实需求，合法合规，你的技能就是答案</p>
+            <div class="stunt-grid reveal-stagger">
+                <div class="stunt-card">
+                    <div class="stunt-bounty">¥ 1200-2000</div>
+                    <div class="stunt-body">
+                        <div class="stunt-avatar">📸</div>
+                        <div class="stunt-text">
+                            <strong>"帮我找一个会日语的摄影师，后天国贸拍活动"</strong>
+                            <span class="stunt-tags">日语 · 摄影 · 商务</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stunt-card">
+                    <div class="stunt-bounty">¥ 500-800</div>
+                    <div class="stunt-body">
+                        <div class="stunt-avatar">🧪</div>
+                        <div class="stunt-text">
+                            <strong>"在深圳华强北测试 App，边走边录屏反馈体验"</strong>
+                            <span class="stunt-tags">本地执行 · 细心反馈</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stunt-card">
+                    <div class="stunt-bounty">¥ 800-1500</div>
+                    <div class="stunt-body">
+                        <div class="stunt-avatar">💼</div>
+                        <div class="stunt-text">
+                            <strong>"明天三里屯见德国客户，需要德语商务陪同"</strong>
+                            <span class="stunt-tags">德语 · 商务礼仪</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stunt-card">
+                    <div class="stunt-bounty">¥ 300-500</div>
+                    <div class="stunt-body">
+                        <div class="stunt-avatar">🏃</div>
+                        <div class="stunt-text">
+                            <strong>"帮我排队买首发限量款，你排队我加钱"</strong>
+                            <span class="stunt-tags">本地 · 时间灵活</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stunt-card">
+                    <div class="stunt-bounty">¥ 200-400</div>
+                    <div class="stunt-body">
+                        <div class="stunt-avatar">🔧</div>
+                        <div class="stunt-text">
+                            <strong>"帮我标 200 张图片，一张 ¥2，今晚之前要"</strong>
+                            <span class="stunt-tags">ML标注 · 手快就有</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stunt-card">
+                    <div class="stunt-bounty">¥ 600-1000</div>
+                    <div class="stunt-body">
+                        <div class="stunt-avatar">🎤</div>
+                        <div class="stunt-text">
+                            <strong>"周六朝阳需要中英双语主持，控场稳的来"</strong>
+                            <span class="stunt-tags">英语 · 主持 · 台风</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider-bottom"></div>
+    </section>
+
+    <!-- 传统平台的痛 -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>为什么你需要<span class="gradient-text"> SkillLoop</span></h2>
+                <p>传统技能平台不是为 AI 时代设计的</p>
+            </div>
+            <div class="problem-grid reveal-stagger">
+                <div class="problem-card">
+                    <div class="problem-icon">🔍</div>
+                    <h3>信息筛选成本过高</h3>
+                    <p>搜索关键词、筛海量简历、逐个私聊确认档期——一次简单找人需要五步以上。猪八戒抽成 20%，一品威客要自己海选。</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💸</div>
+                    <h3>信任与支付断层</h3>
+                    <p>先付钱怕跑路，后付钱怕白干。小额即时技能缺乏资金托管，纠纷频发。平台抽成 15%-30%，越贵越不信任。</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🛡️</div>
+                    <h3>隐私保护缺失</h3>
+                    <p>你有技能，但不想实名公开——怕被公司知道在接私活。现有平台要求公开资料，让你望而却步。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 四大场景 -->
+    <section class="scenarios" id="scenarios">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>覆盖四大<span class="gradient-text">场景</span></h2>
+                <p>一套基础设施，从即时跑腿到年薪百万猎头</p>
+            </div>
+            <div class="scenario-grid reveal-stagger">
+                <div class="scenario-card">
+                    <span class="scenario-tag">即时技能</span>
+                    <h3>同城即时任务</h3>
+                    <p>AI 综合时空距离与技能匹配，10 分钟内供需双方触达。供给侧零费用</p>
+                    <div class="scenario-example">"明天北京国贸，三小时商务陪同翻译"</div>
+                </div>
+                <div class="scenario-card featured">
+                    <span class="scenario-tag">资金托管</span>
+                    <h3>定额悬赏任务</h3>
+                    <p>预算锁入元管家智能合约，交付验收后自动分账。AI 向匹配的技术人才精准推送</p>
+                    <div class="scenario-example">"今晚修复 Stripe 支付回调 Bug，预算 800 元"</div>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-tag">线上咨询</span>
+                    <h3>高管与职场教练</h3>
+                    <p>按需预约大厂总监级导师，模拟面试、方案咨询、晋升辅导。纯线上交付，合约自动结算</p>
+                </div>
+                <div class="scenario-card">
+                    <span class="scenario-tag">高端招聘</span>
+                    <h3>全职猎头服务</h3>
+                    <p>脱敏人才库 + AI 职位画像，精准撮合百万年薪技术管理者。候选人隐私全程保护</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 怎么用 -->
+    <section class="how" id="how">
+        <div class="container">
+            <h2 class="section-title reveal">怎么<span class="gradient-text">用</span></h2>
+            <p class="section-desc reveal">AI 理解需求，匹配真人，完成执行——比你找人快 10 倍</p>
+            <div class="tab-toggle reveal">
+                <button class="tab-btn active" data-tab="earn">让 AI 帮我找活</button>
+                <button class="tab-btn" data-tab="post">让 AI 帮我找人</button>
+            </div>
+            <div class="tab-panel active" id="tab-earn">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <h3>注册你的技能</h3>
+                        <p>翻译、摄影、教课、编程、设计……你会的都能填，零门槛</p>
+                    </div>
+                    <div class="step-arrow">→</div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <h3>AI 自动匹配</h3>
+                        <p>有人发需求，AI 分析后推给最合适的你，不用自己找</p>
+                    </div>
+                    <div class="step-arrow">→</div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <h3>干活收钱</h3>
+                        <p>接单 → 完成 → 资金从元管家合约自动释放到账</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-panel" id="tab-post">
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">1</div>
+                        <h3>一句话说需求</h3>
+                        <p>告诉 AI 你要什么，资金同步锁定至元管家智能合约</p>
+                    </div>
+                    <div class="step-arrow">→</div>
+                    <div class="step">
+                        <div class="step-icon">2</div>
+                        <h3>AI 帮你找人</h3>
+                        <p>AI 从技能网络中匹配最合适的人，双盲推送给你</p>
+                    </div>
+                    <div class="step-arrow">→</div>
+                    <div class="step">
+                        <div class="step-icon">3</div>
+                        <h3>验收付款</h3>
+                        <p>交付确认后，智能合约自动分账。你验收，代码执行。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 你的技能值多少钱 -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title reveal">你的技能<span class="gradient-text">值多少钱</span></h2>
+            <p class="section-desc reveal">每项能力都有市场价，AI 帮你对接愿意付的人</p>
+            <div class="bento-grid reveal-stagger">
+                <div class="bento-card large">
+                    <div class="skill-icon">🌐</div>
+                    <div class="skill-name">翻译陪同</div>
+                    <div class="skill-rate">¥ 300-800/小时</div>
+                    <div class="skill-desc">口译、笔译、商务陪同，日/韩/英/法/德全语种</div>
+                </div>
+                <div class="bento-card large">
+                    <div class="skill-icon">📷</div>
+                    <div class="skill-name">摄影摄像</div>
+                    <div class="skill-rate">¥ 500-2000/次</div>
+                    <div class="skill-desc">活动拍摄、产品摄影、人像修图、航拍全景</div>
+                </div>
+                <div class="bento-card">
+                    <div class="skill-icon">💼</div>
+                    <div class="skill-name">商务支持</div>
+                    <div class="skill-rate">¥ 400-1200/天</div>
+                    <div class="skill-desc">会展协助、数据整理、PPT制作</div>
+                </div>
+                <div class="bento-card">
+                    <div class="skill-icon">🎓</div>
+                    <div class="skill-name">教课咨询</div>
+                    <div class="skill-rate">¥ 200-600/小时</div>
+                    <div class="skill-desc">家教辅导、技能教学、升学/职业咨询</div>
+                </div>
+                <div class="bento-card">
+                    <div class="skill-icon">💻</div>
+                    <div class="skill-name">编程开发</div>
+                    <div class="skill-rate">¥ 500-2000/次</div>
+                    <div class="skill-desc">Bug修复、功能开发、技术咨询</div>
+                </div>
+                <div class="bento-card">
+                    <div class="skill-icon">🚗</div>
+                    <div class="skill-name">出行代驾</div>
+                    <div class="skill-rate">¥ 100-400/次</div>
+                    <div class="skill-desc">接送机、代驾、同城配送</div>
+                </div>
+                <div class="bento-card large">
+                    <div class="skill-icon">🏃</div>
+                    <div class="skill-name">跑腿代办</div>
+                    <div class="skill-rate">¥ 50-200/单</div>
+                    <div class="skill-desc">代买、排队、取送、代办跑腿</div>
+                </div>
+                <div class="bento-card large">
+                    <div class="skill-icon">🏠</div>
+                    <div class="skill-name">生活服务</div>
+                    <div class="skill-rate">¥ 200-800/次</div>
+                    <div class="skill-desc">保洁、搬家协助、宠物看护、收纳整理</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 信任层 -->
+    <section class="trust" id="trust">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>钱<span class="gradient-text">怎么</span>流转</h2>
+                <p>数字人民币元管家托管，平台不经手，代码自动执行</p>
+            </div>
+            <div class="trust-grid reveal-stagger">
+                <div class="trust-card">
+                    <div class="trust-icon">🔒</div>
+                    <h3>零触碰资金</h3>
+                    <p>资金全程在央行数字人民币钱包，平台不设资金池，不存在挪用风险</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">⚡</div>
+                    <h3>智能合约定向分账</h3>
+                    <p>验收通过，资金按预设规则自动释放到执行者钱包。代码执行，不可篡改</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🕶️</div>
+                    <h3>数字代号双盲</h3>
+                    <p>你以 SkillLoop 代号出现，雇主无法获取真实身份和在职信息。大厂接私活无忧</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">💎</div>
+                    <h3>零手续费结算</h3>
+                    <p>数字人民币实时到账，T+0，零手续费。不像银行卡有清算延迟和手续费</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">📋</div>
+                    <h3>央行审计追溯</h3>
+                    <p>分布式账本记录全量交易，每笔资金的锁定、释放、分账可追溯不可篡改</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">✅</div>
+                    <h3>零牌照合规</h3>
+                    <p>法定数字货币 = 零支付牌照需求。平台不经手资金 = 零二清风险</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 定价 -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>透明<span class="gradient-text">定价</span></h2>
+                <p>按场景差异化，供给侧零门槛入驻</p>
+            </div>
+            <div class="pricing-table reveal">
+                <div class="pricing-row pricing-header">
+                    <div class="pricing-cell">业务类型</div>
+                    <div class="pricing-cell">供给侧（接任务方）</div>
+                    <div class="pricing-cell">需求侧（发任务方）</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-cell type">⚡ 即时技能</div>
+                    <div class="pricing-cell free">免费</div>
+                    <div class="pricing-cell">3%-5% 服务费</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-cell type">🎯 悬赏任务</div>
+                    <div class="pricing-cell">5%-10% 抽成</div>
+                    <div class="pricing-cell">3%-5% 担保费</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-cell type">🎓 高管教练</div>
+                    <div class="pricing-cell">3%-5% 服务费</div>
+                    <div class="pricing-cell">3%-5% 服务费</div>
+                </div>
+                <div class="pricing-row">
+                    <div class="pricing-cell type">💼 全职猎头</div>
+                    <div class="pricing-cell">首月薪资 3%-5%</div>
+                    <div class="pricing-cell">年薪 10%-15%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品预览 -->
+    <section class="preview" id="preview">
+        <div class="container">
+            <div class="preview-content reveal">
+                <div class="preview-text">
+                    <h2>一个对话窗口，<br><span class="gradient-text">AI 帮你搞定一切</span></h2>
+                    <p>像聊天一样简单——说一句话，AI 理解、匹配、推进。<br>接单通知实时推送，不再错过机会。</p>
+                    <div class="preview-features">
+                        <div>🤖 AI 自动匹配，不用自己找活/找人</div>
+                        <div>💬 对话式交互，说话就能发需求</div>
+                        <div>🔐 双方实名 + 合约托管，交易有保障</div>
+                        <div>💰 接普通任务 0% 服务费，赚多少拿多少</div>
+                    </div>
+                    <a href="#register" class="btn-primary">申请内测</a>
+                </div>
+                <div class="preview-mockup">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="mock-chat">
+                                <div class="mock-msg bot">你好，我是 SkillLoop 助手。你想找什么服务？</div>
+                                <div class="mock-msg user">需要一个会说日语的摄影师，后天在国贸拍品牌活动</div>
+                                <div class="mock-msg bot">找到 3 位符合条件的技能方 ↓</div>
+                                <div class="mock-card">
+                                    <div class="mock-card-title">📷 王摄影</div>
+                                    <div class="mock-card-sub">日语N1 · 活动摄影 · ⭐4.8</div>
+                                    <div class="mock-card-price">¥500/小时</div>
+                                </div>
+                                <div class="mock-card">
+                                    <div class="mock-card-title">📷 李视觉</div>
+                                    <div class="mock-card-sub">留日5年 · 品牌拍摄 · ⭐4.6</div>
+                                    <div class="mock-card-price">¥400/小时</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 注册向导 -->
+    <section class="register" id="register">
+        <div class="section-divider-top"></div>
+        <div class="container">
+            <h2 class="section-title reveal">三步开始<span class="gradient-text">赚钱</span></h2>
+            <p class="section-desc reveal">注册即获 AI 匹配资格，零门槛起步。首批用户免服务费</p>
+            <div class="wizard reveal" id="wizard">
+                <div class="wizard-steps">
+                    <div class="wizard-step active" data-wstep="1"><div class="wstep-dot">1</div><span>手机号</span></div>
+                    <div class="wizard-line"></div>
+                    <div class="wizard-step" data-wstep="2"><div class="wstep-dot">2</div><span>技能</span></div>
+                    <div class="wizard-line"></div>
+                    <div class="wizard-step" data-wstep="3"><div class="wstep-dot">3</div><span>城市</span></div>
+                </div>
+                <div class="wizard-panel active" id="wpanel-1">
+                    <div class="form-group"><label class="form-label">手机号</label><input type="tel" class="form-input" id="phone" placeholder="输入你的手机号" maxlength="11" autocomplete="tel"></div>
+                    <div class="form-group"><label class="form-label">验证码</label><div class="sms-row"><input type="text" class="form-input" id="smsCode" placeholder="输入验证码" maxlength="6" autocomplete="one-time-code"><button class="btn btn-sms" id="sendSmsBtn" onclick="handleSendSms()">发送验证码</button></div></div>
+                    <div class="form-error" id="step1Error"></div>
+                    <button class="btn btn-primary btn-full" onclick="goToStep2()">下一步</button>
+                </div>
+                <div class="wizard-panel" id="wpanel-2">
+                    <label class="form-label">你会什么？（多选，可加自定义）</label>
+                    <div class="skill-select-grid" id="skillSelect">
+                        <button class="skill-chip" data-skill="翻译陪同">翻译陪同</button>
+                        <button class="skill-chip" data-skill="摄影摄像">摄影摄像</button>
+                        <button class="skill-chip" data-skill="商务支持">商务支持</button>
+                        <button class="skill-chip" data-skill="教课咨询">教课咨询</button>
+                        <button class="skill-chip" data-skill="编程开发">编程开发</button>
+                        <button class="skill-chip" data-skill="出行代驾">出行代驾</button>
+                        <button class="skill-chip" data-skill="跑腿代办">跑腿代办</button>
+                        <button class="skill-chip" data-skill="生活服务">生活服务</button>
+                    </div>
+                    <div class="form-group" style="margin-top:12px"><input type="text" class="form-input" id="customSkill" placeholder="其他技能（自己填）" maxlength="30"></div>
+                    <div class="form-error" id="step2Error"></div>
+                    <div class="wizard-buttons"><button class="btn btn-ghost" onclick="goToStep1()">上一步</button><button class="btn btn-primary" onclick="goToStep3()">下一步</button></div>
+                </div>
+                <div class="wizard-panel" id="wpanel-3">
+                    <div class="form-group"><label class="form-label">你在哪个城市</label><input type="text" class="form-input" id="city" placeholder="输入城市名" list="cityList" autocomplete="address-level1"><datalist id="cityList"></datalist></div>
+                    <div class="form-error" id="step3Error"></div>
+                    <button class="btn btn-primary btn-full" id="submitBtn" onclick="handleSubmit()">完成注册，开始接单</button>
+                    <p class="form-hint">注册即表示同意《用户协议》和《数据授权协议》</p>
+                </div>
+                <div class="wizard-panel" id="wpanel-success">
+                    <div class="success-card">
+                        <div class="success-icon">✓</div>
+                        <h3>注册成功！</h3>
+                        <p>你的初始密码是：</p>
+                        <div class="password-box" id="initPassword">--------</div>
+                        <p class="password-warn">请截图保存，用于 App 登录</p>
+                        <a href="#preview" class="btn btn-primary btn-full">了解 App 功能</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider-bottom"></div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title reveal">还有<span class="gradient-text">问题</span>？</h2>
+            <div class="faq-list reveal-stagger">
+                <details class="faq-item"><summary>SkillLoop 和招聘平台有什么不同？</summary><p>招聘平台是你找公司、签劳动合同、按月发工资。SkillLoop 是 AI 读了你的技能，有人发需求时自动匹配你。按单结算，你是自由人，不是员工。</p></details>
+                <details class="faq-item"><summary>我怎么开始接单？</summary><p>三步：手机号注册 → 选技能 → 填城市。注册后 AI 自动帮你匹配任务。接具体任务前需要实名认证。</p></details>
+                <details class="faq-item"><summary>资金安全怎么保证？</summary><p>所有资金通过央行数字人民币元管家智能合约托管。雇主的钱锁定在合约里，你交付后自动释放到你钱包。平台全程不碰钱。</p></details>
+                <details class="faq-item"><summary>我能同时接多个任务吗？</summary><p>可以。AI 会根据你的技能、位置、时间推荐任务，你自由选择。时间不冲突就行。</p></details>
+                <details class="faq-item"><summary>我在职可以接单吗？</summary><p>可以。平台使用数字代号系统（如 SL-097），雇主看不到你的真实姓名和在职信息。隐私保护是我们的核心设计。</p></details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">◈</span>
+                        <span class="logo-text">Skill<span class="logo-accent">Loop</span></span>
+                        <span class="logo-domain">.cc</span>
+                    </div>
+                    <p class="footer-desc">AI 驱动的现实世界执行网络<br>让技能像云计算一样按需调度</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>产品</h4>
+                        <a href="#stunts">任务广场</a>
+                        <a href="#scenarios">四大场景</a>
+                        <a href="#skills">技能定价</a>
+                        <a href="#pricing">收费标准</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>安全</h4>
+                        <a href="#trust">数字人民币</a>
+                        <a href="#trust">元管家合约</a>
+                        <a href="#trust">隐私保护</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>关于</h4>
+                        <a href="#">商业计划书</a>
+                        <a href="#">联系合作</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 墨者无相科技 · SkillLoop.cc · AI 不会取代你 · AI 会调用你</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
